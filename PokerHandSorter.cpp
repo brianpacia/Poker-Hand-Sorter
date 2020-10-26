@@ -12,6 +12,7 @@ typedef long long ll;
 typedef unsigned long long ull;
 typedef pair<int,string> P;
 
+//checks if hand is a straight
 bool isStraight(P pHand[5]){
     bool ans = true;
     for(int i = 0; i < 4; i++){
@@ -25,6 +26,7 @@ bool isStraight(P pHand[5]){
     return ans;
 }
 
+//checks if hand is a flush
 bool isFlush(P pHand[5]){
     bool ans = true;
     for(int i = 0; i < 4; i++){
@@ -38,6 +40,7 @@ bool isFlush(P pHand[5]){
     return ans;
 }
 
+//counts how many pairs in the hand
 int pairCount(P pHand[5]){
     int ans = 0;
     int counter[15] = {0};
@@ -51,6 +54,7 @@ int pairCount(P pHand[5]){
     return ans;
 }
 
+//checks if hand has 2 pairs
 bool hasTwoPairs(P pHand[5]){
     bool ans = false;
     int pairCtr = 0;
@@ -66,6 +70,7 @@ bool hasTwoPairs(P pHand[5]){
     return ans;
 }
 
+//checks if hand has a trio
 bool hasTrio(P pHand[5]){
     bool ans = false;
     int counter[15] = {0};
@@ -79,6 +84,7 @@ bool hasTrio(P pHand[5]){
     return ans;
 }
 
+//checks if hand is a full house
 bool isFullHouse(P pHand[5]){
     bool ans = false;
     bool trio = false;
@@ -96,6 +102,7 @@ bool isFullHouse(P pHand[5]){
     return ans;
 }
 
+//checks if hand is a four of a kind
 bool isFourOfAKind(P pHand[5]){
     bool ans = false;
     int counter[15] = {0};
@@ -109,7 +116,7 @@ bool isFourOfAKind(P pHand[5]){
     return ans;
 }
 
-
+//returns the rank of the hand via check methods
 int findRank(P pHand[5]){
     int rank = 0;
 
@@ -140,7 +147,7 @@ int findRank(P pHand[5]){
     return rank;
 }
 
-//determine better hand based on highest card
+//determine better hand based on highest card (when both hands are ranked the same)
 int getHigherCard(P p1Hand[5], P p2Hand[5], int rank){
     int winner = 1;
     if(rank == 1){
@@ -295,20 +302,7 @@ int solve(string hands) {
 
     //sort by card values to help with determining kind of hand
     sort(p1Hand,p1Hand+5);
-    sort(p2Hand,p2Hand+5);
-
-    map<int,string> mapp;
-    mapp[1] = "no combo";
-    mapp[2] = "one pair";
-    mapp[3] = "2 pair";
-    mapp[4] = "trio";
-    mapp[5] = "straight";
-    mapp[6] = "flush";
-    mapp[7] = "full house";
-    mapp[8] = "four of a kind";
-    mapp[9] = "straight flush";
-    mapp[10] = "royal flush";
-    
+    sort(p2Hand,p2Hand+5);    
 
     //Find out rank of hand
     int p1Rank = findRank(p1Hand);
@@ -324,8 +318,6 @@ int solve(string hands) {
     
     return winner;
 }
-
-
 
 //==============================================================================
 
